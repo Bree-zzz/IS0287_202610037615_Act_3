@@ -27,12 +27,29 @@ public class CreditoCorporativo {
         this.EsRiesgoso= EsRiesgoso;       
     }
 
-double Calculo = (MontoPrestado*0.20)+MontoPrestado;
-
-    private String getId () {
+        public String getId () {
         return Id;
     }
- 
+
+        public double getMontoPrestado () {
+        return MontoPrestado;
+    }
+
+        public double getTasaInteres () {
+        return TasaInteres;
+    }
+
+       public double getSaldoPendiente () {
+        return SaldoPendiente;
+    }
+
+       private boolean getEsRiesgoso () {
+        return EsRiesgoso;
+    }
+
+
+    double Calculo = (MontoPrestado*0.20)+MontoPrestado;
+
 
     private void setSaldoPendiente (){
         if (SaldoPendiente<0) {
