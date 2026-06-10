@@ -43,22 +43,21 @@ public class CreditoCorporativo {
         return SaldoPendiente;
     }
 
-       private boolean getEsRiesgoso () {
+       public boolean getEsRiesgoso () {
         return EsRiesgoso;
     }
 
 
-    double Calculo = (MontoPrestado*0.20)+MontoPrestado;
 
-
-    private void setSaldoPendiente (){
-        if (SaldoPendiente<0) {
-            this.SaldoPendiente= SaldoPendiente;
+    public double setSaldoPendiente (double SaldoPendiente1){
+        if (SaldoPendiente1<=0) {
+            this.SaldoPendiente= SaldoPendiente1;
         } else {
             System.out.println("Saldo pendiente no puede ser un número negativo.")
         }
     }
-    private void setEsRiesgoso (boolean EsRiesgoso) {
+    public void setEsRiesgoso (boolean EsRiesgoso) {
+        double Calculo = (MontoPrestado*0.20)+MontoPrestado;
             if (SaldoPendiente>Calculo) {
                 this.EsRiesgoso = true;
             } else {
@@ -68,19 +67,19 @@ public class CreditoCorporativo {
         
     public void AbonarCantidad (double SaldoPendiente){
     if (SaldoPendiente>0) {
-        this.SaldoPendiente= SaldoPendiente-(SaldoPendiente*0.20);
+        this.SaldoPendiente= SaldoPendiente;
     } else {
-        System.out.println("El saldo debe ser mayor a 0");
+        System.out.println("El valor debe ser mayor a 0");
     }
 
 }
-    private void CapitalizarIntereses (double SaldoPendiente) {
-    double SaldoPendiente1=((TasaInteres*SaldoPendiente)+SaldoPendiente);
+    public void CapitalizarIntereses (double SaldoPendiente) {
+        double Calculo = (MontoPrestado*0.20)+MontoPrestado;
 }
 
- public void setSaldoPendiente1 (double SaldoPendiente1){
-    this.SaldoPendiente1=SaldoPendiente1;
- }
+//  public setCalculo (double Calculo){
+//     this.Calculo=Calculo;
+//  }
     
 
 
