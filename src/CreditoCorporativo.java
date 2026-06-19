@@ -1,5 +1,5 @@
 public class CreditoCorporativo {
-    private String Id;
+    private final String Id;
     private double MontoPrestado;
     private double SaldoPendiente;
     private double TasaInteres;
@@ -9,22 +9,22 @@ public class CreditoCorporativo {
         this.Id= Id;
         this.MontoPrestado= MontoPrestado;
         this.TasaInteres= TasaInteres;
-        this.EsRiesgoso= EsRiesgoso;
+        ActualizarRiesgo();
     }
 
-    CreditoCorporativo (String Id, double MontoPrestado, double TasaInteres, double SaldoPendiente, boolean EsRiesgoso) {
+    CreditoCorporativo (String Id, double MontoPrestado, double TasaInteres, double SaldoPendiente) {
         this.Id= Id;
         this.MontoPrestado= MontoPrestado;
         this.TasaInteres= TasaInteres;
-        this.EsRiesgoso= EsRiesgoso;
-        this.SaldoPendiente= SaldoPendiente;       
+        this.SaldoPendiente= SaldoPendiente; 
+        ActualizarRiesgo();      
     }
 
-    CreditoCorporativo (String Id, double MontoPrestado, double TasaInteres, boolean EsRiesgoso) {
+    CreditoCorporativo (String Id, double MontoPrestado) {
         this.Id= Id;
         this.MontoPrestado= MontoPrestado;
         this.TasaInteres= 0.015;
-        this.EsRiesgoso= EsRiesgoso;       
+        ActualizarRiesgo();      
     }
 
         public String getId () {
@@ -49,32 +49,40 @@ public class CreditoCorporativo {
 
 
 
-    public double setSaldoPendiente (double SaldoPendiente1){
-        if (SaldoPendiente1<=0) {
+    public void setSaldoPendiente (double SaldoPendiente1){
+        if (SaldoPendiente1>=0) {
             this.SaldoPendiente= SaldoPendiente1;
+            ActualizarRiesgo();
         } else {
             System.out.println("Saldo pendiente no puede ser un número negativo.")
         }
     }
-    public void setEsRiesgoso (boolean EsRiesgoso) {
-        double Calculo = (MontoPrestado*0.20)+MontoPrestado;
-            if (SaldoPendiente>Calculo) {
-                this.EsRiesgoso = true;
-            } else {
-                this.EsRiesgoso = false;
-            }
-        }
+    
         
-    public void AbonarCantidad (double SaldoPendiente){
-    if (SaldoPendiente>0) {
-        this.SaldoPendiente= SaldoPendiente;
-    } else {
-        System.out.println("El valor debe ser mayor a 0");
-    }
+    public void AbonarCantidad (double Cantidad){
+    if ( Cantidad <= 0) {
+        System.out.println("La cantidad debe ser mayor a 0");
+        return;
 
+    } if (SaldoPendiente - Cantidad < 0){
+        System.out.println("Rechazada");
+        return;}
+
+        SaldoPendiente -= Cantidad;
+        ActualizarRiesgo();
+    } 
+
+    public void CapitalizarIntereses () {
+        double interes = SaldoPendiente*TasaInteres;
+        SaldoPendiente+= interes;
+        ActualizarRiesgo();
+        if (EsRiesgoso) {
+           System.out.println("El credito es riesgoso"); 
+        }
 }
-    public void CapitalizarIntereses (double SaldoPendiente) {
-        double Calculo = (MontoPrestado*0.20)+MontoPrestado;
+
+private void ActualizarRiesgo(){
+    EsRiesgoso= SaldoPendiente>(MontoPrestado*1.20);
 }
 
 //  public setCalculo (double Calculo){
