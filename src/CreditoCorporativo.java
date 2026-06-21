@@ -60,7 +60,7 @@ public class CreditoCorporativo {
     
         
     public void AbonarCantidad (double Cantidad){
-    if ( Cantidad <= 0) {
+    if (Cantidad <= 0) {
         System.out.println("La cantidad debe ser mayor a 0");
         return;
 
@@ -85,9 +85,6 @@ private void ActualizarRiesgo(){
     EsRiesgoso= SaldoPendiente>(MontoPrestado*1.20);
 }
 
-//  public setCalculo (double Calculo){
-//     this.Calculo=Calculo;
-//  }
     
 
 
